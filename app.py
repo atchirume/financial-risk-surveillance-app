@@ -8,7 +8,7 @@ from ui.entity_detail import render_entity_detail
 
 st.set_page_config(page_title="Financial Risk Surveillance Platform", page_icon="🛡️", layout="wide")
 st.title("Financial Risk Surveillance Platform")
-st.caption("Enterprise Version 1 • Streamlit prototype for banks and Financial Intelligence Units")
+st.caption("Enterprise Version 1 • Prototype for Banks and Financial Intelligence Units")
 
 with st.sidebar:
     st.header("Controls")
