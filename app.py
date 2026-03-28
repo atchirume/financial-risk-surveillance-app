@@ -231,26 +231,234 @@ and institutional calibration.
         )
 
         st.markdown("## 🔷 Feature Engineering and Indicators")
-        st.markdown(
-            """
-            <div class="doc-card">
-            The model framework constructs a broad range of indicators, including:
-            <ul>
-                <li>Transaction count and amount intensity</li>
-                <li>Turnover relative to expected activity</li>
-                <li>Cash transaction intensity</li>
-                <li>Cross-border activity ratios</li>
-                <li>Round-amount behaviour and structuring indicators</li>
-                <li>Rapid movement and velocity indicators</li>
-                <li>High-risk corridor activity</li>
-                <li>Network degree, PageRank, clustering, and approximate betweenness</li>
-                <li>TBML flags such as high-risk country exposure and invoice deviation patterns</li>
-            </ul>
-            These variables support both risk scoring and analyst interpretation.
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+
+st.markdown("""
+<div class="doc-card">
+
+The feature engineering layer translates raw transactional and customer data into 
+behavioural, structural, and risk-sensitive indicators. Each variable is designed 
+to capture a specific financial crime typology or deviation from expected economic behaviour.
+
+---
+
+### 🔹 1. Transaction Intensity Indicators
+
+**Examples:**
+- `txn_count`
+- `total_txn_amount`
+
+**Motivation:**
+These variables measure the scale and frequency of activity. Financial crime often manifests 
+through unusually high transaction volumes relative to the expected profile of an individual 
+or entity. Sudden spikes in transaction intensity may indicate layering, integration, or 
+rapid movement of illicit funds.
+
+---
+
+### 🔹 2. Turnover vs Expected Behaviour
+
+**Example:**
+- `turnover_vs_expected`
+
+**Motivation:**
+This variable compares observed transaction volumes against expected or declared activity 
+(e.g., income, business turnover).
+
+**Justification:**
+\[
+\text{Turnover Ratio} = \frac{\text{Observed Transactions}}{\text{Expected Activity}}
+\]
+
+Large deviations suggest:
+- fronting or shell activity  
+- misuse of accounts  
+- hidden beneficial ownership  
+
+This is a core indicator in risk-based AML supervision frameworks.
+
+---
+
+### 🔹 3. Cash Intensity Indicators
+
+**Example:**
+- `cash_ratio`
+
+**Motivation:**
+Cash-based transactions reduce traceability and are commonly used in:
+- structuring
+- placement stages of money laundering
+- informal sector concealment
+
+A high cash ratio signals reduced audit trail visibility and elevated risk.
+
+---
+
+### 🔹 4. Cross-Border Activity Indicators
+
+**Examples:**
+- `cross_border_ratio`
+- `cross_border_count`
+
+**Motivation:**
+Cross-border transactions introduce jurisdictional complexity and are frequently associated with:
+- illicit capital flows  
+- trade misinvoicing  
+- offshore concealment  
+
+High cross-border intensity increases exposure to regulatory arbitrage and weak oversight environments.
+
+---
+
+### 🔹 5. Structuring and Round-Amount Behaviour
+
+**Examples:**
+- `round_amount_ratio`
+- `structured_ratio`
+
+**Motivation:**
+Structured transactions (e.g., repeated amounts just below reporting thresholds) are a classic 
+AML typology designed to evade detection systems.
+
+Round-number dominance may indicate:
+- artificial transaction splitting  
+- non-economic transaction patterns  
+
+---
+
+### 🔹 6. Transaction Velocity and Rapid Movement
+
+**Examples:**
+- `rapid_movement_count`
+- `rapid_movement_ratio`
+
+**Motivation:**
+Illicit funds are often moved quickly through multiple accounts to obscure origin 
+(layering stage).
+
+High velocity suggests:
+- pass-through accounts  
+- mule accounts  
+- laundering chains  
+
+---
+
+### 🔹 7. Counterparty and Network Dispersion
+
+**Examples:**
+- `unique_counterparties`
+- `counterparty_intensity`
+
+**Motivation:**
+Unusual dispersion of counterparties may indicate:
+- synthetic transaction networks  
+- circular trading  
+- layering through multiple entities  
+
+A high number of counterparties relative to activity can signal deliberate obfuscation.
+
+---
+
+### 🔹 8. Dormant Account Activation
+
+**Examples:**
+- `dormant_account_flag`
+- `dormant_activation_count`
+
+**Motivation:**
+Dormant accounts that suddenly become active are high-risk because they:
+- bypass behavioural baselines  
+- may be repurposed for illicit use  
+
+This is a well-documented financial crime trigger.
+
+---
+
+### 🔹 9. High-Risk Corridor and Jurisdiction Exposure
+
+**Examples:**
+- `high_risk_country_txn_count`
+- `sanctioned_corridor_count`
+
+**Motivation:**
+Transactions involving high-risk jurisdictions or sanctioned corridors are strongly associated with:
+- sanctions evasion  
+- terrorist financing  
+- illicit trade flows  
+
+These indicators align with FATF risk-based frameworks.
+
+---
+
+### 🔹 10. Network (Graph) Risk Indicators
+
+**Examples:**
+- `graph_degree_centrality`
+- `graph_betweenness`
+- `graph_pagerank`
+- `graph_clustering`
+
+**Motivation:**
+Financial crime networks often exhibit identifiable structural properties:
+- central nodes coordinating flows  
+- intermediaries acting as bridges  
+- tightly connected clusters  
+
+Graph metrics capture:
+- influence  
+- connectivity  
+- systemic exposure  
+
+These are critical for detecting hidden relationships not visible in individual transactions.
+
+---
+
+### 🔹 11. Trade-Based Money Laundering (TBML) Indicators
+
+**Examples:**
+- `tbml_over_invoicing_count`
+- `tbml_under_invoicing_count`
+- `tbml_avg_invoice_deviation_ratio`
+
+**Motivation:**
+TBML involves manipulation of trade invoices to move value across borders.
+
+Indicators capture:
+- price deviations from market benchmarks  
+- abnormal trade flows  
+- discrepancies in invoice values  
+
+These are essential for detecting cross-border laundering schemes.
+
+---
+
+### 🔹 12. Historical Suspicion and Case Signals
+
+**Examples:**
+- `previous_sar_flag`
+- `suspicious_flag`
+
+**Motivation:**
+Past suspicious activity is one of the strongest predictors of future risk due to:
+- behavioural persistence  
+- network continuity  
+- repeated typologies  
+
+---
+
+### 🔹 Summary
+
+The feature set is designed to capture:
+
+- **Behavioural anomalies** (how transactions deviate from expected patterns)  
+- **Structural risk** (network relationships and exposure)  
+- **Regulatory signals** (rule-based triggers and typologies)  
+- **Domain-specific risks** (e.g., TBML)  
+
+Together, these indicators form a comprehensive representation of financial risk behaviour, 
+supporting both statistical modelling and expert interpretation.
+
+</div>
+""", unsafe_allow_html=True)
 
         st.markdown("## 🔷 Capacity-Based Alerting Framework")
         st.markdown(
