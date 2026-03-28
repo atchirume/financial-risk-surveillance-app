@@ -70,3 +70,19 @@ else:
             mime="application/json",
             use_container_width=True,
         )
+        st.divider()
+
+st.markdown("### ⚖️ Disclaimer")
+st.markdown("""
+This application is a prototype analytical tool developed for research and decision-support purposes only.
+It does not replace professional judgment or regulatory processes.
+""")
+
+st.markdown("### 👤 Author & Ownership")
+st.markdown("""
+**Chirume Admire Tarisirayi**  
+PhD Candidate | Director – Macroeconomic Statistics (ZIMSTAT)
+
+© 2026 All Rights Reserved  
+Contact: +263 773 369 884
+""")
