@@ -131,7 +131,17 @@ else:
         st.markdown("## 🔷 Risk Scoring Framework")
         st.markdown(
             """
-            The system computes a composite risk score as a weighted aggregation of multiple detection layers:
+            The system computes a composite risk score as a weighted aggregation of multiple detection layers. The weights applied in the risk fusion function are calibrated based on a hybrid
+design approach that reflects the relative reliability, coverage, and interpretability
+of each risk signal.
+
+Supervised machine learning receives the highest weight due to its ability to learn
+from historical labelled cases, while rule-based, anomaly, network, and TBML signals
+provide complementary perspectives capturing expert knowledge, outliers, structural
+relationships, and domain-specific risks.
+
+These weights may be further refined through empirical validation, backtesting,
+and institutional calibration.
             """
         )
 
@@ -148,17 +158,7 @@ else:
         +
         0.08 \cdot TBML_i
         """)
-The weights applied in the risk fusion function are calibrated based on a hybrid
-design approach that reflects the relative reliability, coverage, and interpretability
-of each risk signal.
 
-Supervised machine learning receives the highest weight due to its ability to learn
-from historical labelled cases, while rule-based, anomaly, network, and TBML signals
-provide complementary perspectives capturing expert knowledge, outliers, structural
-relationships, and domain-specific risks.
-
-These weights may be further refined through empirical validation, backtesting,
-and institutional calibration.
         st.markdown(
             """
             <div class="doc-card">
