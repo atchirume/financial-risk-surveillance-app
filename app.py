@@ -81,7 +81,7 @@ It does not replace professional judgment or regulatory processes.
 st.markdown("### 👤 Author & Ownership")
 st.markdown("""
 **Chirume Admire Tarisirayi**  
-PhD Candidate | Director – Macroeconomic Statistics (ZIMSTAT)
+PhD Candidate | Econometrics|Statistics|Data Science
 
 © 2026 All Rights Reserved  
 Contact: +263 773 369 884
